@@ -21,7 +21,7 @@ export type TodoAction = AddTodoAction | MarkTodoCompleteAction
 //3.5 to make the reducer redux compliant we set a default state
 const intialState: TodoState = {todos:[
     {todoId:101, isComplete:true,  title:"dishes", desc:"Dirty dishes to wash"},
-    {todoId:202, isComplete:false,  title:"Laundery", desc:"Towels that need a rinse"}
+    {todoId:202, isComplete:false,  title:"Laundry", desc:"Towels that need a rinse"}
 ]};
 
 export function todoReducer(state: TodoState = intialState, action: TodoAction): TodoState{
@@ -40,6 +40,8 @@ export function todoReducer(state: TodoState = intialState, action: TodoAction):
            }
            return nextState;
         }
+        default: // DO NOT FORGET TO WRITE A DEFAULT CASE THAT RETURNS NEXT STATE
+            return nextState;
         
     }
 }
