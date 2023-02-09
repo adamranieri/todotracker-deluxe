@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Todo, TodoAction } from "../reducers/todo-reducer"
 
-type TodoForm ={
+export type TodoForm ={
     title: string
     desc: string
 }
@@ -13,13 +13,7 @@ export function TodoForm(){
     const dispatch = useDispatch()<TodoAction>;
 
     function createTodo(){
-        const todo:Todo = {
-            todoId:Math.random(),
-            title:form.title,
-            desc: form.desc,
-            isComplete:false
-        }
-        dispatch({type:"ADD_TODO", payload:todo})
+        dispatch({type:"CREATE_TODO_FROM_FORM", payload:form})// will be intercepted by saga
     }
     
 
