@@ -1,26 +1,24 @@
+import { createStore } from '@reduxjs/toolkit';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+
+import { TodoForm } from './components/todo-form';
+import { TodoList } from './components/todo-list';
+import { todoReducer } from './reducers/todo-reducer';
+
+
+const store = createStore(todoReducer);
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // unlike useReducer. Having a provider wrap components will allow us to use the same reducer function everywhere
+  // greatly simplifies passing data bewteen components
+  return <>
+  <Provider store={store}>
+    <TodoList/>
+    <TodoForm/>
+  </Provider>
+  </>
 }
 
 export default App;
